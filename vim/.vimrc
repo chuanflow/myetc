@@ -22,10 +22,10 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 "clang-complate 配置
 let g:clang_library_path='/usr/lib/llvm-3.8/lib/'
-"let g:UltiSnipsExpandTrigger="<tab>"
 "YouCompleteMe 插件配置
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nmap<C-a> :YcmCompleter FixIt<CR>
 let g:ycm_python_binary_path = '/usr/bin/python3'
 "markdown_preview 插件设置
 
@@ -43,13 +43,27 @@ let g:keyfrom = "aioiyuuko"
 " tagbar 插件配置
 nmap tb :TlistClose<CR>:TagbarToggle<CR>
 " nerdtree 插件配置
+" m 显示文件选项 
 map <C-n> :NERDTreeToggle<CR>
 map tc :tabclose<CR>
 map tn :tabNext<CR>
 map tl :tablast<CR>
 map tf :tabfirst<CR>
-let g:tagbar_width=20                       "设置窗口宽度
-
+let g:tagbar_width=15                      "设置窗口宽度
+let NERDTreeShowBookmarks=1
+let NERDTreeWinSize=25
+" ultisnips and vim-snippets 设置
+let g:UltiSnipsUsePythonVersion = 3
+let g:UltiSnipsExpandTrigger="<C-a>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"let g:UltiSnips_snippet_search_path="~/.vim/bundle/vim-snippets/UltiSnips"
+let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets/UltiSnips'
+" syntastic 设置
+""let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+""let g:syntastic_enable_highlighting = 1
+""let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
 "二							基础配置
 
 set number
@@ -124,5 +138,5 @@ map <F8> :call Rungdb()<CR>
 func! Rungdb()
 	exec "w"
 	exec "!g++ % -g -o %<"
-	exec "!gdb ./%<"
+	exec "!cgdb ./%<"
 endfunc
