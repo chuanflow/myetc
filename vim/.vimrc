@@ -5,9 +5,9 @@ call vundle#begin()
 set nocompatible              " be iMproved, required
 filetype off                  " required
 " 使用Vundle来管理插件，这个必须要有。
-Plugin 'Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'a.vim'
+Plugin 'vim-scripts/a.vim'
 "Plugin 'auto-pairs'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -16,7 +16,7 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'nerdcommenter'
 Plugin 'iamcco/markdown-preview.vim'
 "Plugin 'Rip-Rip/clang-complete'
-Plugin 'Yggdroot/indentLine'
+"Plugin 'Yggdroot/indentLine'
 Plugin 'iamcco/dict.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -25,8 +25,8 @@ let g:clang_library_path='/usr/lib/llvm-3.8/lib/'
 "YouCompleteMe 插件配置
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nmap<C-a> :YcmCompleter FixIt<CR>
 let g:ycm_python_binary_path = '/usr/bin/python3'
+nmap<C-a> :YcmCompleter FixIt<CR>
 "markdown_preview 插件设置
 
 let g:mkdp_path_to_chrome = "google-chrome"
@@ -55,9 +55,6 @@ let NERDTreeWinSize=25
 " ultisnips and vim-snippets 设置
 let g:UltiSnipsUsePythonVersion = 3
 let g:UltiSnipsExpandTrigger="<C-a>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-"let g:UltiSnips_snippet_search_path="~/.vim/bundle/vim-snippets/UltiSnips"
 let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets/UltiSnips'
 " syntastic 设置
 ""let g:syntastic_error_symbol='✗'
@@ -102,7 +99,9 @@ set modifiable			" 允许修改
 set smartindent
 inoremap ( ()<ESC>i
 inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap { {<CR>}<ESC>O
+"inoremap { {<CR>}<ESC>O
+"inoremap } <c-r>=ClosePair('}')<CR>
+inoremap { {}<ESC>i
 inoremap } <c-r>=ClosePair('}')<CR>
 inoremap [ []<ESC>i
 inoremap ] <c-r>=ClosePair(']')<CR>
