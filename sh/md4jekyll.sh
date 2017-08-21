@@ -3,25 +3,19 @@
 function 4jekyll(){
     for file in $1/*
     do
-        if [ -d $file ]
-        then
+        if [ -d $file ];then
             4jekyll $file
-        elif [ -f $file ]
-        then
-            if [ "${file##*.}" == "md" -o "${file##*.}" == "html" ]    
-            then
+        elif [ -f $file ];then
+            if [ "${file##*.}" == "md" -o "${file##*.}" == "html" ];then
                 nameall=${file##*/}
                 name=${nameall%%.*}
-                if [ ! $file -ef $2/$nameall ]
-                then
+                if [ ! $file -ef $2/$nameall ];then
                     cp  -u $file $2/$nameall
                 fi
                 file=$2/$nameall
-                if [[ $name =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}.*$ ]]
-                then
+                if [[ $name =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}.*$ ]];then
                     #在文件第一行前添加内容
-                    if [ "`head -n 1 $file`" != "---"  ]
-                    then
+                    if [ "`head -n 1 $file`" != "---"  ];then
                         sed -i '1i---\nlayout: post\ntitle: '"$name"'\ncategories:\n- past\ntags:\n- past\n---' $file
                     #else
                     ##从第一行开始删除八行
@@ -31,8 +25,7 @@ function 4jekyll(){
                     echo $nameall
                 else
                     #在文件第一行前添加内容
-                    if [ "`head -n 1 $file`" != "---" ]
-                    then
+                    if [ "`head -n 1 $file`" != "---" ];then
                         sed -i '1i---\nlayout: post\ntitle: '"$name"'\ncategories:\n- past\ntags:\n- past\n---' $file
                     fi
                     #复制到参数2路径下
@@ -44,4 +37,5 @@ function 4jekyll(){
         fi
     done
 }
+# $1 html and md mv to $2
 4jekyll $1 $2
